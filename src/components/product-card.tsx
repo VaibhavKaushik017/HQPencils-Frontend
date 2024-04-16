@@ -30,7 +30,7 @@ const ProductCard = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   return (
-    <div className="border-[1px] relative hover:shadow-lg p-3 rounded-3xl border-gray-300 cursor-pointer">
+    <div className="border-[1px] w-[220px] relative hover:shadow-lg p-3 rounded-3xl border-gray-300 cursor-pointer">
       <button
         className="bg-orange-200 absolute top-2 right-2 p-3 rounded-full"
         onMouseEnter={() => setIsHovered(true)}
@@ -41,15 +41,17 @@ const ProductCard = ({
       >
         {isHovered ? <FaPlus /> : <FiShoppingCart />}
       </button>
-      <div className="bg-gray-100 rounded-3xl p-3">
+      <div className="bg-gray-100 rounded-3xl w-full">
         <img
-          className="h-[200px] w-[200px]"
+          className="h-[200px] rounded-3xl bg-cover w-[200px]"
           src={`${server}/${photo}`}
           alt={name}
         />
       </div>
       <p className="text-xs pt-3 text-green-500">Available</p>
-      <h1 className="font-semibold">{name}</h1>
+      <h1 className="font-semibold">
+        {name.length > 18 ? name.slice(0, 18) + "..." : name}
+      </h1>
       <div className="flex items-center justify-between">
         <div>
           <div className="flex text-yellow-400">

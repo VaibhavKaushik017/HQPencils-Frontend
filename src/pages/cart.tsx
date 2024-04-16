@@ -77,7 +77,7 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <div className="flex justify-between w-[90%] mx-auto py-24">
+    <div className="flex justify-between w-[92%] mx-auto py-24">
       <div className="w-[65%]">
         <h2 className="font-semibold text-lg pb-4">Order</h2>
         <Card className="h-full p-6">

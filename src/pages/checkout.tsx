@@ -6,20 +6,40 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { FormEvent, useState } from "react";
-import { Button } from "../components/ui/button";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { useNewOrderMutation } from "../redux/api/orderAPI";
+import { resetCart } from "../redux/reducer/cartReducer";
+import { RootState } from "../redux/store";
+import { NewOrderRequest } from "../types/api-types";
+import { responseToast } from "../utils/features";
 
-const stripePromise = loadStripe(
-  "pk_test_51OvBQxSCV5QWOhzerrJ1J0DJt4sCD8t8m1KesaN6VEhTuabzcCfxecOigAhIpzPCiYEcZRXLyFsCeLH3b23rHDKX00cx7qiPUu"
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state: RootState) => state.userReducer);
+
+  const {
+    shippingInfo,
+    cartItems,
+    subtotal,
+    tax,
+    discount,
+    shippingCharges,
+    total,
+  } = useSelector((state: RootState) => state.cartReducer);
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
+  const [newOrder] = useNewOrderMutation();
+
   const submitHander = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -27,7 +47,16 @@ const CheckoutForm = () => {
 
     setIsProcessing(true);
 
-    const order = {};
+    const orderData: NewOrderRequest = {
+      shippingInfo,
+      orderItems: cartItems,
+      subtotal,
+      tax,
+      discount,
+      shippingCharges,
+      total,
+      user: user?._id!,
+    };
 
     const { paymentIntent, error } = await stripe.confirmPayment({
       elements,
@@ -41,8 +70,9 @@ const CheckoutForm = () => {
     }
 
     if (paymentIntent.status === "succeeded") {
-      alert("Placing Order");
-      navigate("/orders");
+      const res = await newOrder(orderData);
+      dispatch(resetCart());
+      responseToast(res, navigate, "/orders");
     }
     setIsProcessing(false);
   };
@@ -59,11 +89,16 @@ const CheckoutForm = () => {
 };
 
 const Checkout = () => {
+  const location = useLocation();
+
+  const clientSecret: string | undefined = location.state;
+
+  if (!clientSecret) return <Navigate to={"/shipping"} />;
+
   return (
     <Elements
       options={{
-        clientSecret:
-          "pi_3P2nLASCV5QWOhze11ejHOk2_secret_zrA739Rayz7SRwai4DGLs6WWO",
+        clientSecret,
       }}
       stripe={stripePromise}
     >

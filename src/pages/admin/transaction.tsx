@@ -9,6 +9,7 @@ import { Skeleton } from "../../components/loader";
 import { useAllOrdersQuery } from "../../redux/api/orderAPI";
 import { CustomError } from "../../types/api-types";
 import { UserReducerInitialState } from "../../types/reducer-types";
+import { RootState } from "../../redux/store";
 
 interface DataType {
   user: string;
@@ -48,7 +49,7 @@ const columns: Column<DataType>[] = [
 
 const Transaction = () => {
   const { user } = useSelector(
-    (state: { userReducer: UserReducerInitialState }) => state.userReducer
+    (state: RootState) => state.userReducer
   );
 
   const { isLoading, isError, error, data } = useAllOrdersQuery(user?._id!);

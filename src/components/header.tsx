@@ -34,10 +34,11 @@ function Header({ user }: PropsType) {
         <div className="flex items-center py-4 justify-between w-[95%] container mx-auto">
           <div>
             <Link to="/">
-              <h1 className="font-bold text-xl">
+              <h1 className="font-bold leading-3 text-xl">
                 HQ<span className="text-red-600">PENCILS</span>
               </h1>
             </Link>
+            <span className="text-xs font-bold tracking-wider text-red-300">Sketches are love!</span>
           </div>
           <div>
             <ul className="flex items-center gap-10 max-lg:hidden text-sm font-semibold">
@@ -93,7 +94,11 @@ function Header({ user }: PropsType) {
               )}
 
               <Link to="/cart">
-                <Button size={"icon"} className="text-lg rounded-full" variant={"ghost"}>
+                <Button
+                  size={"icon"}
+                  className="text-lg rounded-full"
+                  variant={"ghost"}
+                >
                   <FiShoppingCart />
                 </Button>
               </Link>

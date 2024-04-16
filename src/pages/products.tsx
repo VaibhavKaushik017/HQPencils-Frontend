@@ -69,14 +69,14 @@ function Products() {
         tag="HQ PENCILS - A SKETCH STORE"
         line="Save more with coupons & up to 70% off!"
       />
-      <div className="flex justify-end w-[90%] mx-auto pb-10 pt-24 ">
+      <div className="flex justify-end w-[92%] mx-auto pb-10 pt-24 ">
         <Input
           className="w-[440px]"
           placeholder="Let me find something you are looking for! Search Here..."
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <section className="flex w-[90%] pb-24 mx-auto gap-10">
+      <section className="flex w-[92%] pb-24 mx-auto gap-4 justify-between">
         <aside>
           <Card>
             <CardHeader>
@@ -123,7 +123,7 @@ function Products() {
           </Card>
         </aside>
         <main>
-          <div className="flex pb-16 flex-wrap w-full gap-10">
+          <div className="grid grid-cols-4 pb-16 w-full gap-6">
             {productLoading ? (
               <Skeleton width="80vw" />
             ) : (
