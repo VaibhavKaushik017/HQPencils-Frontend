@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { server } from "../redux/store";
 import { CartReducerInitialState } from "../types/reducer-types";
 import { saveShippingInfo } from "../redux/reducer/cartReducer";
+import { Button } from "../components/ui/button";
 
 const Shipping = () => {
   const { cartItems, total } = useSelector(
@@ -63,14 +64,18 @@ const Shipping = () => {
   }, [cartItems]);
 
   return (
-    <div className="shipping">
+    <div className="my-24 w-[400px] mx-auto p-4 border border-blue-400">
       <button className="back-btn" onClick={() => navigate("/cart")}>
         <BiArrowBack />
       </button>
 
-      <form onSubmit={submitHandler}>
+      <form
+        className="flex flex-col justify-center items-center gap-4"
+        onSubmit={submitHandler}
+      >
         <h1>Shipping Address</h1>
         <input
+          className="border border-blue-400 w-full rounded-md p-2"
           required
           type="text"
           placeholder="Address"
@@ -79,6 +84,7 @@ const Shipping = () => {
           onChange={changeHandler}
         />
         <input
+          className="border border-blue-400 w-full rounded-md p-2"
           required
           type="text"
           placeholder="City"
@@ -87,6 +93,7 @@ const Shipping = () => {
           onChange={changeHandler}
         />
         <input
+          className="border border-blue-400 w-full rounded-md p-2"
           required
           type="text"
           placeholder="State"
@@ -95,6 +102,7 @@ const Shipping = () => {
           onChange={changeHandler}
         />
         <select
+          className="border border-blue-400 w-full rounded-md p-2"
           name="country"
           required
           value={shippingInfo.country}
@@ -104,6 +112,7 @@ const Shipping = () => {
           <option value="india">India</option>
         </select>
         <input
+          className="border border-blue-400 w-full rounded-md p-2"
           required
           type="number"
           placeholder="Pin Code"
@@ -111,8 +120,7 @@ const Shipping = () => {
           value={shippingInfo.pinCode}
           onChange={changeHandler}
         />
-
-        <button type="submit">Pay Now</button>
+        <Button type="submit" className="w-full">Pay Now</Button>
       </form>
     </div>
   );
