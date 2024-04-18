@@ -96,7 +96,7 @@ function Products() {
                 <h4>Max Price : {maxPrice || ""}</h4>
                 <input
                   type="range"
-                  min={2500}
+                  min={2000}
                   max={5000}
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
