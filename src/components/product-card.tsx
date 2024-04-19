@@ -9,6 +9,7 @@ import { server } from "../redux/store";
 import { FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
 import { CartItem } from "../types/types";
+import { Link } from "react-router-dom";
 
 type ProductsProps = {
   productId: string;
@@ -27,8 +28,15 @@ const ProductCard = ({
   stock,
   handler,
 }: ProductsProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [likeCount, setLikeCount] = useState<number>(0);
+
+  const likeHandler = (isLiked: boolean) => {
+    setIsLiked(!isLiked);
+    isLiked ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1);
+  };
+
   return (
     <div className="border-[1px] w-[220px] relative hover:shadow-lg p-3 rounded-3xl border-gray-300 cursor-pointer">
       <button
@@ -41,13 +49,16 @@ const ProductCard = ({
       >
         {isHovered ? <FaPlus /> : <FiShoppingCart />}
       </button>
-      <div className="bg-gray-100 rounded-3xl w-full">
+      <Link
+        to={`/product/${productId}`}
+        className="bg-gray-100 rounded-3xl w-full"
+      >
         <img
           className="h-[200px] rounded-3xl bg-cover w-[200px]"
           src={`${server}/${photo}`}
           alt={name}
         />
-      </div>
+      </Link>
       <p className="text-xs pt-3 text-green-500">Available</p>
       <h1 className="font-semibold">
         {name.length > 18 ? name.slice(0, 18) + "..." : name}
@@ -65,7 +76,7 @@ const ProductCard = ({
         </div>
         <div className="flex gap-4 items-center">
           <button
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={() => likeHandler(isLiked)}
             className="cursor-pointer bg-red-100 rounded-3xl p-2 border-[1px] border-red-500"
           >
             {isLiked ? (
@@ -73,7 +84,7 @@ const ProductCard = ({
             ) : (
               <AiOutlineLike className="text-2xl text-red-500" />
             )}
-            <p className="text-xs text-center">26</p>
+            <p className="text-xs text-center">{likeCount}</p>
           </button>
         </div>
       </div>

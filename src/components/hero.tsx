@@ -14,8 +14,13 @@ function Hero() {
           <p className="max-md:text-xs text-gray-500 tracking-widest">
             PENCIL SKETCH
           </p>
-          <Link to="/custom">
-            <button className="mt-10">ORDER NOW</button>
+          <Link to="/custom-sketch">
+            <button className="inline-block py-3 relative text-red-500 px-5 btn__submit rounded-md overflow-hidden text-sm max-md:text-xs font-bold transition-[.5s] mt-10">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>ORDER NOW
+            </button>
           </Link>
         </div>
         <div className="flex justify-center gap-[1px] w-1/2">

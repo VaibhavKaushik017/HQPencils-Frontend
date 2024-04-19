@@ -1,25 +1,30 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
-import Loader from "./components/loader";
-import Header from "./components/header";
-import { Toaster } from "react-hot-toast";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-import { userExist, userNotExist } from "./redux/reducer/userReducer";
+import { Suspense, lazy, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "./redux/api/userAPI";
-import { UserReducerInitialState } from "./types/reducer-types";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
 import Footer from "./components/footer";
+import Header from "./components/header";
+import Loader from "./components/loader";
 import ProtectedRoute from "./components/protected-route";
+import { auth } from "./firebase";
+import { getUser } from "./redux/api/userAPI";
+import { userExist, userNotExist } from "./redux/reducer/userReducer";
+import { UserReducerInitialState } from "./types/reducer-types";
 
 const Home = lazy(() => import("./pages/home"));
 const Products = lazy(() => import("./pages/products"));
 const Cart = lazy(() => import("./pages/cart"));
 const Orders = lazy(() => import("./pages/orders"));
 const Shipping = lazy(() => import("./pages/shipping"));
+const Login = lazy(() => import("./pages/auth/login"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Checkout = lazy(() => import("./pages/checkout"));
+const ProductDetails = lazy(() => import("./pages/product-details"));
+const CustomSketch = lazy(() => import("./pages/custom-sketch"));
+const Contact = lazy(() => import("./pages/contact"));
+const Profile = lazy(() => import("./pages/profile"));
 
 // ADMIN ROUTES IMPORTING
 
@@ -69,11 +74,25 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/custom-sketch" element={<CustomSketch />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+
+          {/* Not Logged in Routes */}
+          <Route
+            path="/auth/login"
+            element={
+              <ProtectedRoute isAuthenticated={user ? false : true}>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Logged in User Routes */}
           <Route
             element={<ProtectedRoute isAuthenticated={user ? true : false} />}
           >
+            <Route path="/profile" element={<Profile />} />
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/pay" element={<Checkout />} />

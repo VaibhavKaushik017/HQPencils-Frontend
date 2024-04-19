@@ -30,7 +30,7 @@ function Header({ user }: PropsType) {
   };
   return (
     <>
-      <div className="fixed top-0 w-full bg-white">
+      <div className="fixed top-0 w-full bg-white z-10">
         <div className="flex items-center py-4 justify-between w-[95%] container mx-auto">
           <div>
             <Link to="/">
