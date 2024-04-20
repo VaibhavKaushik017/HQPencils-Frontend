@@ -1,10 +1,12 @@
+import { signOut } from "firebase/auth";
+import toast from "react-hot-toast";
+import { FaSignOutAlt } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { User } from "../types/types";
-import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-import toast from "react-hot-toast";
-import { FaSignOutAlt, FaUser } from "react-icons/fa";
+import { User } from "../types/types";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
 
 interface PropsType {
   user: User | null;
@@ -38,7 +39,9 @@ function Header({ user }: PropsType) {
                 HQ<span className="text-red-600">PENCILS</span>
               </h1>
             </Link>
-            <span className="text-xs font-bold tracking-wider text-red-300">Sketches are love!</span>
+            <span className="text-xs font-bold tracking-wider text-red-300">
+              Sketches are love!
+            </span>
           </div>
           <div>
             <ul className="flex items-center gap-10 max-lg:hidden text-sm font-semibold">
@@ -56,9 +59,10 @@ function Header({ user }: PropsType) {
                 <>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size={"icon"} variant={"ghost"}>
-                        <FaUser />
-                      </Button>
+                      <Avatar className="cursor-pointer">
+                        <AvatarImage src={user.photo} alt="@shadcn" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuLabel>

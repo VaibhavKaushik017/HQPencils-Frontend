@@ -12,15 +12,29 @@ import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { useProductDetailsQuery } from "../redux/api/productAPI";
 import { server } from "../redux/store";
+import { useDispatch } from "react-redux";
+import { CartItem } from "../types/types";
+import toast from "react-hot-toast";
+import { addToCart } from "../redux/reducer/cartReducer";
 
 function ProductDetails() {
   const params = useParams();
   const { data, isError, isLoading } = useProductDetailsQuery(params.id!);
 
-  const { price, name, photo } = data?.product! || {
+  const { price, stock, name, photo } = data?.product! || {
     photo: "",
     name: "",
+    stock: 0,
     price: 0,
+  };
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (cartItem: CartItem) => {
+    if (cartItem.stock < 1) return toast.error("Out of Stock");
+
+    dispatch(addToCart(cartItem));
+    toast.success(`${cartItem.name} added to Cart`);
   };
 
   if (isError) return <Navigate to={"/404"} />;
@@ -60,7 +74,21 @@ function ProductDetails() {
                 {/* <p>{stock}</p>
               <p>{category}</p> */}
                 <div className="flex gap-3 w-full">
-                  <Button className="w-full">Add to Cart</Button>
+                  <Button
+                    className="w-full"
+                    onClick={() =>
+                      addToCartHandler({
+                        productId: params.id!,
+                        price,
+                        name,
+                        photo,
+                        stock,
+                        quantity: 1,
+                      })
+                    }
+                  >
+                    Add to Cart
+                  </Button>
                   <Button className="w-full border-black" variant={"outline"}>
                     Buy Now
                   </Button>
