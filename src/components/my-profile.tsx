@@ -24,8 +24,10 @@ function MyProfile() {
           <Card className="flex items-center">
             <CardHeader>
               <Avatar className="w-20 h-20">
-                <AvatarImage src={user?.photo} alt="@shadcn" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src={user?.photo} alt={user?.name.slice(0, 2).toUpperCase()} />
+                <AvatarFallback>
+                  {user?.name.slice(0, 2).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
             </CardHeader>
             <CardContent className="h-full pt-5 flex flex-col gap-1">

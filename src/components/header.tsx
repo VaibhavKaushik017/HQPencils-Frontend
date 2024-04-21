@@ -60,8 +60,10 @@ function Header({ user }: PropsType) {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Avatar className="cursor-pointer">
-                        <AvatarImage src={user.photo} alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarImage src={user.photo} alt={user?.name.slice(0, 2).toUpperCase()} />
+                        <AvatarFallback>
+                          {user?.name.slice(0, 2).toUpperCase()}
+                        </AvatarFallback>
                       </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
