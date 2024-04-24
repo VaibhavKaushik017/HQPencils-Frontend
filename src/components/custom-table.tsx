@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "../components/ui/table";
+import CustomSketchForm from "./custom-sketch-form";
+import { Button } from "./ui/button";
 
 const invoices = [
   {
@@ -62,35 +64,52 @@ const invoices = [
 ];
 
 function CustomTable() {
+  const [selectedRow, setSelectedRow] = useState<any>();
+
+  const handleButtonClick = (invoice: any) => {
+    setSelectedRow(invoice);
+  };
+
   return (
-    <Table className="w-[80%] mx-auto my-24">
-      <TableCaption className="font-semibold tracking-widest">
-        <span className="text-orange-400">HQPencils</span>, Known For Quality !!
-        🔥😉
-      </TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Sr. No.</TableHead>
-          <TableHead>No. of Faces</TableHead>
-          <TableHead>Time ( Approximate )</TableHead>
-          <TableHead>Size</TableHead>
-          <TableHead>Charges</TableHead>
-          <TableHead className="text-right">Select</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.id}>
-            <TableCell className="font-medium">{invoice.id}</TableCell>
-            <TableCell>{invoice.faces}</TableCell>
-            <TableCell>{invoice.time}</TableCell>
-            <TableCell>{invoice.size}</TableCell>
-            <TableCell>{invoice.charge}</TableCell>
-            <TableCell className="text-right"><Link className="text-orange-400 font-semibold" to={'/'}>Click Here</Link></TableCell>
+    <>
+      <Table className="w-[80%] mx-auto my-24">
+        <TableCaption className="font-semibold tracking-widest">
+          <span className="text-orange-400">HQPencils</span>, Known For Quality
+          !! 🔥😉
+        </TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Sr. No.</TableHead>
+            <TableHead>No. of Faces</TableHead>
+            <TableHead>Time ( Approximate )</TableHead>
+            <TableHead>Size</TableHead>
+            <TableHead>Charges</TableHead>
+            <TableHead className="text-right">Select</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.id}>
+              <TableCell className="font-medium">{invoice.id}</TableCell>
+              <TableCell>{invoice.faces}</TableCell>
+              <TableCell>{invoice.time}</TableCell>
+              <TableCell>{invoice.size}</TableCell>
+              <TableCell>{invoice.charge}</TableCell>
+              <TableCell className="text-right">
+                <Button
+                  variant={"link"}
+                  className="text-orange-400 font-semibold"
+                  onClick={() => handleButtonClick(invoice)}
+                >
+                  Click Here
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {selectedRow && <CustomSketchForm data={selectedRow} />}
+    </>
   );
 }
 
