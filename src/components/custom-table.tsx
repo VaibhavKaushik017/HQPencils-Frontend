@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "../components/ui/table";
 import CustomSketchForm from "./custom-sketch-form";
-import { Button } from "./ui/button";
 
 const invoices = [
   {
@@ -96,19 +95,14 @@ function CustomTable() {
               <TableCell>{invoice.size}</TableCell>
               <TableCell>{invoice.charge}</TableCell>
               <TableCell className="text-right">
-                <Button
-                  variant={"link"}
-                  className="text-orange-400 font-semibold"
-                  onClick={() => handleButtonClick(invoice)}
-                >
-                  Click Here
-                </Button>
+                <button onClick={() => handleButtonClick(invoice)}>
+                  <CustomSketchForm data={selectedRow} />
+                </button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {selectedRow && <CustomSketchForm data={selectedRow} />}
     </>
   );
 }
