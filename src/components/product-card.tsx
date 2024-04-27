@@ -38,9 +38,9 @@ const ProductCard = ({
   };
 
   return (
-    <div className="border-[1px] w-[220px] relative hover:shadow-lg p-3 rounded-3xl border-gray-300 cursor-pointer">
+    <div className="border-[1px] relative hover:shadow-lg p-3 max-sm:p-2 rounded-3xl border-gray-300 cursor-pointer">
       <button
-        className="bg-orange-200 absolute top-2 right-2 p-3 rounded-full"
+        className="bg-orange-200 absolute top-2 right-2 p-3 max-sm:p-2 rounded-full"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() =>
@@ -54,13 +54,13 @@ const ProductCard = ({
         className="bg-gray-100 rounded-3xl w-full"
       >
         <img
-          className="h-[200px] rounded-3xl bg-cover w-[200px]"
+          className="h-[200px] max-sm:h-[150px] rounded-3xl bg-cover w-[200px] max-sm:w-[150px]"
           src={`${server}/${photo}`}
           alt={name}
         />
       </Link>
       <p className="text-xs pt-3 text-green-500">Available</p>
-      <h1 className="font-semibold">
+      <h1 className="font-semibold max-sm:text-sm">
         {name.length > 18 ? name.slice(0, 18) + "..." : name}
       </h1>
       <div className="flex items-center justify-between">
@@ -77,12 +77,12 @@ const ProductCard = ({
         <div className="flex gap-4 items-center">
           <button
             onClick={() => likeHandler(isLiked)}
-            className="cursor-pointer bg-red-100 rounded-3xl p-2 border-[1px] border-red-500"
+            className="cursor-pointer bg-red-100 rounded-3xl p-2 max-sm:p-1 border-[1px] border-red-500"
           >
             {isLiked ? (
-              <AiFillLike className="text-2xl text-red-500" />
+              <AiFillLike className="text-2xl max-sm:text-base text-red-500" />
             ) : (
-              <AiOutlineLike className="text-2xl text-red-500" />
+              <AiOutlineLike className="text-2xl max-sm:text-base text-red-500" />
             )}
             <p className="text-xs text-center">{likeCount}</p>
           </button>

@@ -83,22 +83,19 @@ const Contact = () => {
                       name="logo-instagram"
                     />
                   </a>
-                  <a href="mailto:kaushikvaibhav017@gmail.com" target="_blank">
+                  <a href="mailto:support@hqpencils.com" target="_blank">
                     <SiGmail
                       className="text-gray-700 hover:text-blue-600"
                       name="mail-outline"
                     />
                   </a>
-                  <a href="https://www.youtube.com/@subspro" target="_blank">
+                  <a href="https://www.youtube.com/@hqpencils" target="_blank">
                     <BsYoutube
                       className="text-gray-700 hover:text-red-600"
                       name="logo-youtube"
                     />
                   </a>
-                  <a
-                    href="https://telegram.dog/SubsPRO_Official"
-                    target="_blank"
-                  >
+                  <a href="https://telegram.dog/hqpencils" target="_blank">
                     <BsTelegram
                       className="text-gray-700 hover:text-blue-600"
                       name="paper-plane-outline"

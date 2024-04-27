@@ -60,7 +60,10 @@ function Header({ user }: PropsType) {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Avatar className="cursor-pointer">
-                        <AvatarImage src={user.photo} alt={user?.name.slice(0, 2).toUpperCase()} />
+                        <AvatarImage
+                          src={user.photo}
+                          alt={user?.name.slice(0, 2).toUpperCase()}
+                        />
                         <AvatarFallback>
                           {user?.name.slice(0, 2).toUpperCase()}
                         </AvatarFallback>
@@ -95,7 +98,9 @@ function Header({ user }: PropsType) {
                 </>
               ) : (
                 <>
-                  <Link to="/auth/login">LOGIN</Link>
+                  <Link className="login-btn" to="/auth/login">
+                    LOGIN
+                  </Link>
                 </>
               )}
 

@@ -2,12 +2,12 @@ function Services() {
   return (
     <div>
       <section>
-        <div className="flex flex-wrap gap-2 justify-between pb-24">
+        <div className="flex gap-2 justify-between pb-24 max-sm:pb-14">
           <div className="flex items-center gap-3">
             <div>
               <img className="h-12" src="f2.png" />
             </div>
-            <div>
+            <div className="max-sm:hidden">
               <h1 className="font-semibold">Delivery</h1>
               <p className="text-sm text-gray-400">
                 Fastest delivery on all orders
@@ -18,7 +18,7 @@ function Services() {
             <div>
               <img className="h-12" src="f3.png" />
             </div>
-            <div>
+            <div className="max-sm:hidden">
               <h1 className="font-semibold">Save Money</h1>
               <p className="text-sm text-gray-400">
                 Extra Discount on all products
@@ -29,7 +29,7 @@ function Services() {
             <div>
               <img className="h-12" src="f5.png" />
             </div>
-            <div>
+            <div className="max-sm:hidden">
               <h1 className="font-semibold">Customer Satisfaction</h1>
               <p className="text-sm text-gray-400">Best Quality Products</p>
             </div>
@@ -38,7 +38,7 @@ function Services() {
             <div>
               <img className="h-12" src="f6.png" />
             </div>
-            <div>
+            <div className="max-sm:hidden">
               <h1 className="font-semibold">Support</h1>
               <p className="text-sm text-gray-400">24/7 Hours Online Support</p>
             </div>
