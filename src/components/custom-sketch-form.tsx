@@ -15,7 +15,10 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 
 function CustomSketchForm(data: any) {
-  console.log(data);
+  const faces = data.data.faces;
+  const charge = data.data.charge;
+  const size = data.data.size;
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -30,19 +33,11 @@ function CustomSketchForm(data: any) {
             <form action="" className="flex flex-col gap-4">
               <Input
                 placeholder="No. of faces"
-                disabled={data?.data?.faces}
-                value={data?.data?.faces}
+                disabled={faces}
+                value={faces}
               />
-              <Input
-                placeholder="Size"
-                disabled={data?.data?.size}
-                value={data?.data?.size}
-              />
-              <Input
-                placeholder="Charge"
-                disabled={data?.data?.charge}
-                value={data?.data?.charge}
-              />
+              <Input placeholder="Size" disabled={size} value={size} />
+              <Input placeholder="Charge" disabled={charge} value={charge} />
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between">
                   <Label htmlFor="message">

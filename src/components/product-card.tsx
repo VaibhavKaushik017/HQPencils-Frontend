@@ -38,7 +38,7 @@ const ProductCard = ({
   };
 
   return (
-    <div className="border-[1px] relative hover:shadow-lg p-3 max-sm:p-2 rounded-3xl border-gray-300 cursor-pointer">
+    <div className="border-[1px] relative hover:shadow-lg p-3 rounded-3xl border-gray-300 cursor-pointer">
       <button
         className="bg-orange-200 absolute top-2 right-2 p-3 max-sm:p-2 rounded-full"
         onMouseEnter={() => setIsHovered(true)}
@@ -54,7 +54,7 @@ const ProductCard = ({
         className="bg-gray-100 rounded-3xl w-full"
       >
         <img
-          className="h-[200px] max-sm:h-[150px] rounded-3xl bg-cover w-[200px] max-sm:w-[150px]"
+          className="h-[200px] max-sm:h-[150px] rounded-3xl bg-cover w-full"
           src={`${server}/${photo}`}
           alt={name}
         />

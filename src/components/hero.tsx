@@ -25,11 +25,15 @@ function Hero() {
         </div>
         <div className="flex justify-center gap-[1px] w-1/2">
           <img
-            className="h-[400px] max-sm:h-[150px] max-sm:scale-[2] max-md:h-[250px] max-lg:h-[320px]"
+            className="h-[400px] md:hidden max-sm:h-fit max-sm:scale-125 max-md:h-[250px] max-lg:h-[320px]"
+            src="banner-image.png"
+          />
+          <img
+            className="h-[400px] max-md:hidden max-md:h-[250px] max-lg:h-[320px]"
             src="girl.png"
           />
           <img
-            className="max-lg:h-[320px] max-sm:hidden h-[400px] max-sm:h-[180px] max-md:h-[250px]"
+            className="max-lg:h-[320px] max-md:hidden h-[400px] max-sm:h-[180px] max-md:h-[250px]"
             src="virat.png"
           />
         </div>

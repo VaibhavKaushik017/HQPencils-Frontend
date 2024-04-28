@@ -6,7 +6,8 @@ function CustomSketch() {
   return (
     <div>
       <Banner
-        image="b1.jpg"
+        img="custom-banner.png"
+        image="custom-banner.png"
         tag="ORDER YOUR CUSTOM PORTRAIT"
         line="Handmade Hyper Realistic Pencil Sketch From Photo"
       />

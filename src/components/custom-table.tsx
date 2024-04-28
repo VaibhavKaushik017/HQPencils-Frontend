@@ -62,10 +62,18 @@ const invoices = [
   },
 ];
 
-function CustomTable() {
-  const [selectedRow, setSelectedRow] = useState<any>();
+type selectedRowType = {
+  id: number;
+  faces: string;
+  time: string;
+  charge: string;
+  size: string;
+};
 
-  const handleButtonClick = (invoice: any) => {
+function CustomTable() {
+  const [selectedRow, setSelectedRow] = useState<selectedRowType>();
+
+  const handleButtonClick = (invoice: selectedRowType) => {
     setSelectedRow(invoice);
   };
 

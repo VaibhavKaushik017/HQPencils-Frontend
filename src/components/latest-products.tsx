@@ -28,7 +28,7 @@ function LatestProducts() {
           More
         </Link>
       </h1>
-      <main className="grid grid-cols-5 max-sm:grid-cols-2 gap-5 max-sm:gap-3 justify-between">
+      <main className="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-5 max-sm:gap-3 justify-between">
         {isLoading ? (
           <Skeleton width="80vw" />
         ) : (
