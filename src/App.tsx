@@ -25,6 +25,12 @@ const ProductDetails = lazy(() => import("./pages/product-details"));
 const CustomSketch = lazy(() => import("./pages/custom-sketch"));
 const Contact = lazy(() => import("./pages/contact"));
 const Profile = lazy(() => import("./pages/profile"));
+const Disclaimer = lazy(() => import("./pages/disclaimer"));
+const TermsCondition = lazy(() => import("./pages/termsCondition"));
+const PrivacyPolicy = lazy(() => import("./pages/privacyPolicy"));
+const RefundCancellationPolicy = lazy(
+  () => import("./pages/refundCancellationPolicy")
+);
 
 // ADMIN ROUTES IMPORTING
 
@@ -72,6 +78,13 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/termsCondition" element={<TermsCondition />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+          <Route
+            path="/refundCancellationPolicy"
+            element={<RefundCancellationPolicy />}
+          />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />

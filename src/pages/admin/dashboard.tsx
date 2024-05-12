@@ -26,7 +26,7 @@ const Dashboard = () => {
   if (isError) return <Navigate to={"/"} />;
 
   return (
-    <div className="admin-container my-16">
+    <div className="admin-container mb-16 mt-32">
       <AdminSidebar />
       <main className="dashboard">
         {isLoading ? (

@@ -1,6 +1,6 @@
 type BannerProps = {
   image: string;
-  img: string;
+  img?: string;
   tag: string;
   line: string;
 };

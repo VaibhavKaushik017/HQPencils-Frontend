@@ -77,10 +77,10 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <div className="flex justify-between w-[92%] mx-auto py-24">
-      <div className="w-[65%]">
+    <div className="flex justify-between max-md:flex-col gap-6 w-[92%] mx-auto py-24">
+      <div className="w-[65%] max-md:w-full">
         <h2 className="font-semibold text-lg pb-4">Order</h2>
-        <Card className="h-full p-6">
+        <Card className="h-full min-h-60 p-6">
           {cartItems.length > 0 ? (
             cartItems.map((i, idx) => (
               <CartItemCard
@@ -92,13 +92,13 @@ const Cart = () => {
               />
             ))
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-60 flex items-center justify-center">
               <h1>I guess, you forgot to add something to your cart...</h1>
             </div>
           )}
         </Card>
       </div>
-      <div className="w-[30%]">
+      <div className="flex-1">
         <h2 className="font-semibold text-lg pb-4">Payment Summary</h2>
         <Card className="p-6">
           <div className="flex gap-5">
